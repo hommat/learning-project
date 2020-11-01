@@ -12,24 +12,23 @@ services:
             - books
     books:
         build: books
+        command: npm run dev
         volumes:
-            - ./books/src:/server/src
+            - ./books/:/server/
         ports:
             - 3001:3000
     articles:
         build: articles
+        command: npm run dev
         volumes:
-            - ./articles/src:/server/src
+            - ./articles/:/server/
         ports:
             - 3002:3000
     web:
         build: web
+        command: npm run dev
         volumes:
-            - ./web/pages:/server/pages
-            - ./web/public:/server/public
-            - ./web/styles:/server/styles
-            - ./web/components:/server/components
-            - ./web/lib:/server/lib
+            - ./web/:/server/
         ports:
             - 3000:3000
         depends_on: 
