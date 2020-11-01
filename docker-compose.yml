@@ -1,0 +1,39 @@
+version: "3"
+services:
+    nginx:
+        build: nginx
+        volumes:
+            - ./nginx/nginx.conf:/etc/nginx/nginx.conf
+        ports:
+            - 80:80
+        depends_on: 
+            - web
+            - articles
+            - books
+    books:
+        build: books
+        volumes:
+            - ./books/src:/server/src
+        ports:
+            - 3001:3000
+    articles:
+        build: articles
+        volumes:
+            - ./articles/src:/server/src
+        ports:
+            - 3002:3000
+    web:
+        build: web
+        volumes:
+            - ./web/pages:/server/pages
+            - ./web/public:/server/public
+            - ./web/styles:/server/styles
+            - ./web/components:/server/components
+            - ./web/lib:/server/lib
+        ports:
+            - 3000:3000
+        depends_on: 
+            - books
+            - articles
+    
+            
