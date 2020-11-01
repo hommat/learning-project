@@ -1,4 +1,4 @@
-version: "3"
+version: "3.4"
 services:
     nginx:
         build: nginx
@@ -11,22 +11,25 @@ services:
             - articles
             - books
     books:
-        build: books
-        command: npm run dev
+        build: 
+            context: books
+            target: development
         volumes:
             - ./books/:/server/
         ports:
             - 3001:3000
     articles:
-        build: articles
-        command: npm run dev
+        build: 
+            context: articles
+            target: development
         volumes:
             - ./articles/:/server/
         ports:
             - 3002:3000
     web:
-        build: web
-        command: npm run dev
+        build: 
+            context: web
+            target: development
         volumes:
             - ./web/:/server/
         ports:

@@ -1,9 +1,0 @@
-version: "3"
-services:
-    books:
-        build: books
-        command: npm run test
-        volumes:
-            - ./books/src:/server/src
-        ports:
-            - 3001:3000
